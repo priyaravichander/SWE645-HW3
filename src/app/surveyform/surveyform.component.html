@@ -80,7 +80,9 @@
     }
 </script>
 
-<body class="w3-light-grey" >
+
+<body class="w3-light-grey" onload="focus();hideTextbox();hideTextboxChecklist();">
+
 
 	<div class="w3-content" style="max-width: 1400px">
 
@@ -110,7 +112,9 @@
 					</div>
 
 					<div class="w3-container">
+
 						<form #formData="ngForm" name="Survey" onreset="resetForm();" (ngSubmit)="onSubmit(formData.value)">
+
 
 							<br><b> Q1. Please enter your personal information below. (all fields are required)<span id="asterisk">*</span></b><br>
 							<div class="w3-container">
@@ -151,6 +155,7 @@
 									<tr>
 										<td>Today's date (Ex. 01/01/2021):<span id="asterisk">*</span></td>
 										<td><input type="text" name="Date" [(ngModel)]="Date" [ngModelOptions]="{standalone: true}"></td>
+
 									</tr>
 								</tbody>
 							</table>
@@ -158,6 +163,7 @@
 							
 							<br><b> Q2. What did you like most about the campus? (select 1 or more checkboxes from below)</b> 
 								<div class="w3-container"><div class="w3-container">
+
 								<input type="checkbox" name="Q2" id="Students" value="Students" onclick="hideTextboxChecklist()" [(ngModel)]="favorite" [ngModelOptions]="{standalone: true}"/> 
 								<label for="Students">Students</label> 
 								<br /> 

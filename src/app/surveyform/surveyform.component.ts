@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./surveyform.component.css']
 })
 export class SurveyformComponent implements OnInit {
+
   public FirstName: string;
   public LastName: string;
   public StreetAddress: string;
@@ -59,4 +60,5 @@ export class SurveyformComponent implements OnInit {
     console.log(this.httpClient.post(this.REST_API_SERVER, body, { 'headers': headers }).subscribe());
     
  } 
+
 }
