@@ -54,7 +54,7 @@ export class SurveyformComponent implements OnInit {
     const body = "{ \"firstname\":" + this.FirstName + ", \"lastname\":" + this.LastName + ",\"streetAddress\":"
       + this.StreetAddress + ",\"city\":" + this.City + ",\"state\":" + this.State + ",\"zipcode\":"
       + this.Zipcode + ",\"phone\":" + this.Phone + ",\"email\":" + this.Email + ",\"date\":" + this.Date + ",\"favorite\":"
-      + this.favorite + ",\"interest\":" + this.interest + ",\"recommmendation\":" + this.recommendation + ",\"raffle\":"
+      + this.favorite + ",\"interest\":" + this.interest + ",\"recommendation\":" + this.recommendation + ",\"raffle\":"
       + "\""+this.raffle + "\""+ ",\"comments\":" + this.comments + "}";
     
     console.log("body    " + body);
