@@ -1,0 +1,10 @@
+body,h1 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+body {
+  background-image: url('group-people-with-thumbs-up-on-white-background-vector-20027253.jpeg');
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  width: 100%;
+}

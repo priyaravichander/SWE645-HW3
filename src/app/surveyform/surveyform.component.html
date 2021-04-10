@@ -1,87 +1,7 @@
-<script>
-	function focus() {
-		
-		document.Survey.FirstName.focus();
-		document.Survey.LastName.focus();
-		document.Survey.StreetAddress.focus();
-		document.Survey.City.focus();
-		document.Survey.State.focus();
-		document.Survey.Zipcode.focus();
-		document.Survey.Phone.focus();
-		document.Survey.Email.focus();
-		document.Survey.Date.focus();
-		window.scrollTo(0,0);
-	}
-	function CheckInput() {
-		var ErrorMessage = "";
-		var NumErrors = 0;
-		
-		if (document.Survey.FirstName.value == "") {
-			NumErrors++;
-			ErrorMessage += "\n     " + "-- First Name";
-		}
-		if (document.Survey.LastName.value == "") {
-			NumErrors++;
-			ErrorMessage += "\n     " + "-- Last Name";
-		}
-		if (document.Survey.StreetAddress.value == "") {
-			NumErrors++;
-			ErrorMessage += "\n     " + "-- Street Address";
-		}
-		if (document.Survey.City.value == "") {
-			NumErrors++;
-			ErrorMessage += "\n     " + "-- City";
-		}
-		if (document.Survey.State.value == "") {
-			NumErrors++;
-			ErrorMessage += "\n     " + "-- State";
-		}
-		if (document.Survey.Zipcode.value == "") {
-			NumErrors++;
-			ErrorMessage += "\n     " + "-- Zipcode";
-		}
-		if (document.Survey.Phone.value == "") {
-			NumErrors++;
-			ErrorMessage += "\n     " + "-- Telephone Number";
-		}
-		if (document.Survey.Email.value == "") {
-			NumErrors++;
-			ErrorMessage += "\n     " + "-- E-mail";
-		}
-		if (document.Survey.Date.value == "") {
-			NumErrors++;
-			ErrorMessage += "\n     " + "-- Date";
-		}
-		if (NumErrors > 0) {
-			alert("The following fields are required and were left blank:" + ErrorMessage);
-			return (false);
-		} else {
-			alert("Your responses have been saved. Thank you for participating in this survey!");
-			return (true);
-		}
-	}
-	function resetForm(){
-		document.getElementById("textbox").style.display = "none";
-		document.getElementById("textboxcheck").style.display = "none";
-	    
-		alert("Your responses will be cleared.");
-		window.scrollTo(0,0);
-		return (true);
-	}
-	function hideTextbox() {
-        var other = document.getElementById("Other");
-        var textbox = document.getElementById("textbox");
-        textbox.style.display = other.checked ? "block" : "none";
-    }
-	function hideTextboxChecklist() {
-        var other = document.getElementById("othercheck");
-        var textbox = document.getElementById("textboxcheck");
-        textbox.style.display = other.checked ? "block" : "none";
-    }
-</script>
 
 
-<body class="w3-light-grey" onload="focus();hideTextbox();hideTextboxChecklist();">
+
+<body class="w3-light-grey" >
 
 
 	<div class="w3-content" style="max-width: 1400px">
@@ -90,9 +10,7 @@
 			<h1>
 				<b>Student Survey Form!</b>
 			</h1>
-			<p>
-				Welcome to the Prospective Students Survey Form for SWE645 HW1 Part 2, created by <span class="w3-tag">Vandana Keshavamurthy</span>
-			</p>
+			
 		</header>
 
 		<div class="w3-row">
@@ -112,49 +30,61 @@
 					</div>
 
 					<div class="w3-container">
+						<form #formData="ngForm" name="surveyForm" (ngSubmit)="onSubmit(formData.value)"> 
+						<!-- <form #formData="ngForm" name="Survey" onreset="resetForm();" (ngSubmit)="onSubmit(formData.value)"> -->
 
-						<form #formData="ngForm" name="Survey" onreset="resetForm();" (ngSubmit)="onSubmit(formData.value)">
-
-
+							<div formGroupName="userDetail">
 							<br><b> Q1. Please enter your personal information below. (all fields are required)<span id="asterisk">*</span></b><br>
 							<div class="w3-container">
 							<table>
 								<tbody>
 									<tr>
 										<td>First Name:<span id="asterisk">*</span></td>
-										<td><input type="text" [(ngModel)]="FirstName" [ngModelOptions]="{standalone: true}"></td>
+										<td><input id="FirstName" #firstname="ngModel" class="form-control" type="text" [(ngModel)]="FirstName" [ngModelOptions]="{standalone: true}" required></td>
+										<!-- <div 
+    class="alert alert-danger">
+
+  <div *ngIf="firstname.errors && firstname.errors.required">
+    Name is required.
+  </div>
+  <small
+                        *ngIf="!myReactiveForm.get('userDetail.fname').valid && myReactiveForm.get('userDetail.fname').touched"
+                        class="text-danger">First name required.</small>
+
+</div> -->
+										
 									</tr>
 									<tr>
 										<td>Last Name:<span id="asterisk">*</span></td>
-										<td><input type="text" name="LastName" [(ngModel)]="LastName" [ngModelOptions]="{standalone: true}"></td>
+										<td><input type="text" name="LastName" [(ngModel)]="LastName" [ngModelOptions]="{standalone: true}" required></td>
 									</tr>
 									<tr>
 										<td>Street Address:<span id="asterisk">*</span></td>
-										<td><input type="text" name="StreetAddress" [(ngModel)]="StreetAddress" [ngModelOptions]="{standalone: true}"></td>
+										<td><input type="text" name="StreetAddress" [(ngModel)]="StreetAddress" [ngModelOptions]="{standalone: true}" required></td>
 									</tr>
 									<tr>
 										<td>City:<span id="asterisk">*</span></td>
-										<td><input type="text" name="City" [(ngModel)]="City" [ngModelOptions]="{standalone: true}"></td>
+										<td><input type="text" name="City" [(ngModel)]="City" [ngModelOptions]="{standalone: true}" required></td>
 									</tr>
 									<tr>
 										<td>State:<span id="asterisk">*</span></td>
-										<td><input type="text" name="State" [(ngModel)]="State" [ngModelOptions]="{standalone: true}"></td>
+										<td><input type="text" name="State" [(ngModel)]="State" [ngModelOptions]="{standalone: true}" required></td>
 									</tr>
 									<tr>
 										<td>Zipcode:<span id="asterisk">*</span></td>
-										<td><input type="text" name="Zipcode" [(ngModel)]="Zipcode" [ngModelOptions]="{standalone: true}"></td>
+										<td><input type="text" name="Zipcode" [(ngModel)]="Zipcode" [ngModelOptions]="{standalone: true}" required></td>
 									</tr>
 									<tr>
 										<td>Telephone Number:<span id="asterisk">*</span></td>
-										<td><input type="text" name="Phone" [(ngModel)]="Phone" [ngModelOptions]="{standalone: true}"></td>
+										<td><input type="text" name="Phone" [(ngModel)]="Phone" [ngModelOptions]="{standalone: true}" required></td>
 									</tr>
 									<tr>
 										<td>E-mail:<span id="asterisk">*</span>:</td>
-										<td><input type="text" name="Email" [(ngModel)]="Email" [ngModelOptions]="{standalone: true}"></td>
+										<td><input type="text" name="Email" [(ngModel)]="Email" [ngModelOptions]="{standalone: true}" required></td>
 									</tr>
 									<tr>
 										<td>Today's date (Ex. 01/01/2021):<span id="asterisk">*</span></td>
-										<td><input type="text" name="Date" [(ngModel)]="Date" [ngModelOptions]="{standalone: true}"></td>
+										<td><input type="text" name="Date" [(ngModel)]="Date" [ngModelOptions]="{standalone: true}" required></td>
 
 									</tr>
 								</tbody>
@@ -162,50 +92,37 @@
 							</div>
 							
 							<br><b> Q2. What did you like most about the campus? (select 1 or more checkboxes from below)</b> 
-								<div class="w3-container"><div class="w3-container">
-
-								<input type="checkbox" name="Q2" id="Students" value="Students" onclick="hideTextboxChecklist()" [(ngModel)]="favorite" [ngModelOptions]="{standalone: true}"/> 
-								<label for="Students">Students</label> 
-								<br /> 
-								<input type="checkbox" name="Q2" id="Location" value="Location" onclick="hideTextboxChecklist()" [(ngModel)]="favorite" [ngModelOptions]="{standalone: true}"/> 
-								<label for="Location">Location</label> 
-								<br /> 
-								<input type="checkbox" name="Q2" id="Campus" value="Campus" onclick="hideTextboxChecklist()" [(ngModel)]="favorite" [ngModelOptions]="{standalone: true}"/> 
-								<label for="Campus">Campus</label>
-								<br />
-								<input type="checkbox" name="Q2" id="Atmosphere" value="Atmosphere" onclick="hideTextboxChecklist()" [(ngModel)]="favorite" [ngModelOptions]="{standalone: true}"/> 
-								<label for="Atmosphere">Atmosphere</label>
-								<br /> 
-								<input type="checkbox" name="Q2" id="Dorm Rooms" value="Dorm Rooms" onclick="hideTextboxChecklist()" [(ngModel)]="favorite" [ngModelOptions]="{standalone: true}"/> 
-								<label for="Dorm Rooms">Dorm Rooms</label> 
-								<br /> 
-								<input type="checkbox" name="Q2" id="Sports" value="Sports" onclick="hideTextboxChecklist()" [(ngModel)]="favorite" [ngModelOptions]="{standalone: true}"/> 
-								<label for="Sports">Sports</label> 
-								<br /> 
-								<input type="checkbox" name="Q2" id="othercheck" value="othercheck" onclick="hideTextboxChecklist()" [(ngModel)]="favorite" [ngModelOptions]="{standalone: true}"/> 
-								<label for="othercheck">Other</label> 
-								<div class="w3-container"><div id="textboxcheck" style="display: none"> Please specify: <input type="text" id="textboxcheck" /></div>
-								</div>
-								</div></div>
 								
+								
+								<label for="favoriteOptions"></label>
+								<div *ngFor="let option of favoriteOptions; let i = index">
+									<label>
+										<input type="checkbox"
+											name="options_{{i}}"
+											value="{{option.value}}"
+											[(ngModel)]="option.checked"/>
+										{{option.name}}
+									</label>
+								</div>
+
 							<br><b>Q3. How did you become interested in the university? (select from the radio buttons below) </b>
 								<div class="w3-container"><div class="w3-container">
-								<input type="radio" name="Q3" id="Friends" value="Friends" onclick="hideTextbox()" [(ngModel)]="interest" [ngModelOptions]="{standalone: true}"/> 
+								<input type="radio" name="Q3" id="Friends" value="Friends"  [(ngModel)]="interest" [ngModelOptions]="{standalone: true}"/> 
 								<label for="Friends">Friends</label>
 								<br /> 
-								<input type="radio" name="Q3" id="Television" value="Television" onclick="hideTextbox()" [(ngModel)]="interest" [ngModelOptions]="{standalone: true}"/> 
+								<input type="radio" name="Q3" id="Television" value="Television"  [(ngModel)]="interest" [ngModelOptions]="{standalone: true}"/> 
 								<label for="Television">Television</label>
 								<br /> 
-								<input type="radio" name="Q3" id="Internet" value="Internet" onclick="hideTextbox()" [(ngModel)]="interest" [ngModelOptions]="{standalone: true}"/> 
+								<input type="radio" name="Q3" id="Internet" value="Internet" [(ngModel)]="interest" [ngModelOptions]="{standalone: true}"/> 
 								<label for="Internet">Internet</label> 
 								<br />
-								<input type="radio" name="Q3" id="College Fairs" value="College Fairs" onclick="hideTextbox()" [(ngModel)]="interest" [ngModelOptions]="{standalone: true}"/> 
+								<input type="radio" name="Q3" id="College Fairs" value="College Fairs"  [(ngModel)]="interest" [ngModelOptions]="{standalone: true}"/> 
 								<label for="College Fair">College Fair</label> 
 								<br /> 
-								<input type="radio" name="Q3" id="Teachers/Professionals" value="Teachers/Professionals" onclick="hideTextbox()" [(ngModel)]="interest" [ngModelOptions]="{standalone: true}"/> 
+								<input type="radio" name="Q3" id="Teachers/Professionals" value="Teachers/Professionals"  [(ngModel)]="interest" [ngModelOptions]="{standalone: true}"/> 
 								<label for="Teachers/Professionals">Teachers/Professionals</label> 
 								<br />
-								<input type="radio" name="Q3" id="Other" value="Other" onclick="hideTextbox()" [(ngModel)]="interest" [ngModelOptions]="{standalone: true}"/> 
+								<input type="radio" name="Q3" id="Other" value="Other"  [(ngModel)]="interest" [ngModelOptions]="{standalone: true}"/> 
 								<label for="Other">Other</label> 
 								<div class="w3-container"><div id="textbox" style="display: none"> Please specify: <input type="text" id="textbox"  /></div>
 								</div>
@@ -215,7 +132,7 @@
 							<br><b>Q4. How likely are you to recommend this school to other prospective students? (choose an option from the dropdown list below)</b> 
 								<br> 
 								<div class="w3-container"><div class="w3-container">
-								<select name="Options" id="Options" [(ngModel)]="recommendation" [ngModelOptions]="{standalone: true}">
+								<select name="Options" id="Options" [(ngModel)]="recommendation" [ngModelOptions]="{standalone: true}" required>
 									<option style="display:none" selected="selected" value="">Click here for options </option>
 									<option value="Very Likely">Very Likely</option>
 									<option value="Likely">Likely</option>
@@ -231,7 +148,7 @@
 									<tbody>
 										<tr>
 											<td>Raffle:</td>
-											<td><input type="text" name="Raffle" [(ngModel)]="raffle" [ngModelOptions]="{standalone: true}"></td>
+											<td><input type="text" name="Raffle" [(ngModel)]="raffle" [ngModelOptions]="{standalone: true}" required></td>
 										</tr>
 									</tbody>
 								</table>
@@ -239,17 +156,18 @@
 							<br>
 							
 							<p><b>Additional Comments, Suggestions, and Concerns:</b></p>
-							<textarea rows="4" cols="40" id=“Comments” [(ngModel)]="comments" [ngModelOptions]="{standalone: true}"></textarea>
+							<textarea rows="4" cols="40" id=“Comments” [(ngModel)]="comments" [ngModelOptions]="{standalone: true}" required></textarea>
 							
 							<br/> <br />
 							<p>Select "Submit Answers" to submit your responses. Select "Cancel" to clear your responses. </p>
 							
-							<button type="submit">Submit Answers</button>
+							<button type="submit" [disabled]="!LastName||!FirstName||!StreetAddress||!City||!Zipcode||!Phone||!Email||!Date||!interest||!recommendation||!raffle||!comments"> Submit Answers</button>
 							<br /> <br />
 							<button type=reset>Cancel</button>
 							<br /> <br />
-							
+						</div>
 						</form>
+					
 					</div>
 				</div>
 			</div>
@@ -260,18 +178,13 @@
 <div class="w3-container">
 
 	<p>We hope your enjoy your time at our university! Welcome!</p>
+	<h3 style="text-align: center;color: black;" class="w3-jumbo w3-animate-top">Team: Vandana Keshavamurthy, Dhruv Rami, Madeline Fredriksz, Priya Ravichander</h3>
+
 	<div class="w3-row"></div>
 </div>
 <hr>
 
 
-<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
-	<p>You are viewing SWE645 HW1 Part 2, Student Survey Form.</p>
-	<p>
-		To view SWE645 HW1 Part 1 (static website on AWS S3), <a
-			href="http://swe645-vkeshava.s3-website-us-east-1.amazonaws.com/"
-			target="_blank">Click here!</a>
-	</p>
-</footer>
+
 
 </body>

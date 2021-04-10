@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient,HttpResponse } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 
   
@@ -37,7 +38,7 @@ export class SurveyrecordsComponent implements OnInit {
 }
   ngOnInit(): void {
     
-    const REST_API_SERVER = "http://localhost:8080/SurveyApp/survey";
+    const REST_API_SERVER = environment.apiUrl;
     const headers = {
       'Accept': 'application/json'
     };
