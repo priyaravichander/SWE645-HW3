@@ -1,3 +1,6 @@
+/* Team: Madeline, Vandana, Dhruv, Priya 
+Spec for Survey records
+*/
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SurveyrecordsComponent } from './surveyrecords.component';

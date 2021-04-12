@@ -1,3 +1,6 @@
+/* Team: Madeline, Vandana, Dhruv, Priya 
+component for homepage
+*/
 import { Component, OnInit } from '@angular/core';
 
 @Component({

@@ -1,3 +1,6 @@
+/* Team: Madeline, Vandana, Dhruv, Priya 
+Spec for Success page
+*/
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SuccessComponent } from './success.component';

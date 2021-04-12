@@ -52,26 +52,11 @@ class SurveyrecordsComponent {
         this.columndefs = ['firstname', 'lastname', 'city', 'state', 'zipcode', 'phone', 'email',
             'date', 'favorite', 'interest', 'recommendation', 'raffle', 'comments'];
         this.surveyrecords = [];
-        this.ELEMENT_DATA = [
-            { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-            { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-            { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-            { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-            { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-            { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-            { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-            { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-            { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-            { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-        ];
         this.dataSource = this.surveyrecords;
-        // console.log(datasource1 +" datasource1");
-        this.displayedColumns = ['position', 'name', 'weight', 'symbol'];
     }
     cleanString(str) {
         str = str.replace('"[', '[');
         str = str.replace(']"', ']');
-        // str = str.replace('"', '\'');
         return str;
     }
     ngOnInit() {
@@ -81,16 +66,11 @@ class SurveyrecordsComponent {
         };
         this.httpClient.get(REST_API_SERVER, { 'headers': headers }).subscribe((data) => {
             for (var val of data["result"]) {
-                // console.log(val); // prints values: 10, 20, 30, 40
-                // JSON.parse(val);
                 const json = this.cleanString(val);
                 console.log(JSON.parse(json));
                 this.surveyrecords.push(JSON.parse(json));
             }
-            // this.surveyrecords = data["result"];
             console.log(this.surveyrecords);
-            this.dataSource = this.ELEMENT_DATA;
-            // console.log(this.dataSource)
         });
     }
 }
@@ -231,21 +211,16 @@ class SurveyformComponent {
         });
     }
     onSubmit(formData) {
-        // if (this.myReactiveForm.invalid)
-        // return false;
         const headers = {
             'content-type': 'application/json', 'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
         };
         console.log("slecetd options" + this.selectedOptions);
-        // console.log("Firstname: " + formData.FirstName
-        // + "lastname: " + formData.LastName);
         const body = "{ \"firstname\":\"" + this.FirstName + "\", \"lastname\":\"" + this.LastName + "\",\"streetAddress\":\""
             + this.StreetAddress + "\",\"city\":\"" + this.City + "\",\"state\":\"" + this.State + "\",\"zipcode\":\""
             + this.Zipcode + "\",\"phone\":\"" + this.Phone + "\",\"email\":\"" + this.Email + "\",\"date\":\"" + this.Date + "\",\"favorite\":\""
             + this.selectedOptions + "\",\"interest\":\"" + this.interest + "\",\"recommendation\":\"" + this.recommendation + "\",\"raffle\":"
             + "\"" + this.raffle + "\"" + ",\"comments\":\"" + this.comments + "\"}";
-        console.log("body    " + body);
         console.log(this.httpClient.post(this.REST_API_SERVER, body, { 'headers': headers }).subscribe());
         this.router.navigate(['success']);
     }
@@ -777,9 +752,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
 /* harmony import */ var _success_success_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./success/success.component */ "J7dT");
-/* harmony import */ var _failure_failure_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./failure/failure.component */ "nTaI");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/core */ "fXoL");
-
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/core */ "fXoL");
 
 
 
@@ -799,8 +772,8 @@ __webpack_require__.r(__webpack_exports__);
 class AppModule {
 }
 AppModule.ɵfac = function AppModule_Factory(t) { return new (t || AppModule)(); };
-AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_15__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]] });
-AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_15__["ɵɵdefineInjector"]({ providers: [], imports: [[
+AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_14__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]] });
+AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_14__["ɵɵdefineInjector"]({ providers: [], imports: [[
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
             _app_routing_module__WEBPACK_IMPORTED_MODULE_6__["AppRoutingModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_11__["FormsModule"],
@@ -824,53 +797,21 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_15__["ɵɵdefineInjecto
                 {
                     path: 'success',
                     component: _success_success_component__WEBPACK_IMPORTED_MODULE_13__["SuccessComponent"]
-                },
-                {
-                    path: 'failure',
-                    component: _failure_failure_component__WEBPACK_IMPORTED_MODULE_14__["FailureComponent"]
                 }
             ]),
             _angular_common_http__WEBPACK_IMPORTED_MODULE_12__["HttpClientModule"]
         ], _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_15__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"],
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_14__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"],
         _surveyform_surveyform_component__WEBPACK_IMPORTED_MODULE_8__["SurveyformComponent"],
         _surveyrecords_surveyrecords_component__WEBPACK_IMPORTED_MODULE_9__["SurveyrecordsComponent"],
         _homepage_homepage_component__WEBPACK_IMPORTED_MODULE_10__["HomepageComponent"],
-        _success_success_component__WEBPACK_IMPORTED_MODULE_13__["SuccessComponent"],
-        _failure_failure_component__WEBPACK_IMPORTED_MODULE_14__["FailureComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
+        _success_success_component__WEBPACK_IMPORTED_MODULE_13__["SuccessComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
         _app_routing_module__WEBPACK_IMPORTED_MODULE_6__["AppRoutingModule"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_11__["FormsModule"],
         _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTableModule"],
         _angular_material_paginator__WEBPACK_IMPORTED_MODULE_3__["MatPaginatorModule"],
         _angular_material_sort__WEBPACK_IMPORTED_MODULE_5__["MatSortModule"],
         _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_4__["MatProgressSpinnerModule"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_12__["HttpClientModule"]], exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]] }); })();
-
-
-/***/ }),
-
-/***/ "nTaI":
-/*!**********************************************!*\
-  !*** ./src/app/failure/failure.component.ts ***!
-  \**********************************************/
-/*! exports provided: FailureComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FailureComponent", function() { return FailureComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
-
-class FailureComponent {
-    constructor() { }
-    ngOnInit() {
-    }
-}
-FailureComponent.ɵfac = function FailureComponent_Factory(t) { return new (t || FailureComponent)(); };
-FailureComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: FailureComponent, selectors: [["app-failure"]], decls: 2, vars: 0, template: function FailureComponent_Template(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "failure works!");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    } }, styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJmYWlsdXJlLmNvbXBvbmVudC5jc3MifQ== */"] });
 
 
 /***/ }),

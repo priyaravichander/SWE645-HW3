@@ -1,3 +1,6 @@
+/* Team: Madeline, Vandana, Dhruv, Priya 
+Component for survey form. Fires a post request to the server and gets the response
+*/
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -65,23 +68,21 @@ export class SurveyformComponent implements OnInit {
   private REST_API_SERVER = environment.apiUrl;
   
   onSubmit(formData: { FirstName: string; LastName: string; }) {
-    // if (this.myReactiveForm.invalid)
-    // return false;
+ 
     
     const headers = {
       'content-type': 'application/json', 'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
     }
     console.log("slecetd options"+this.selectedOptions);
-    // console.log("Firstname: " + formData.FirstName
-    // + "lastname: " + formData.LastName);
+    
     const body = "{ \"firstname\":\"" + this.FirstName + "\", \"lastname\":\"" + this.LastName + "\",\"streetAddress\":\""
       + this.StreetAddress + "\",\"city\":\"" + this.City + "\",\"state\":\"" + this.State + "\",\"zipcode\":\""
       + this.Zipcode + "\",\"phone\":\"" + this.Phone + "\",\"email\":\"" + this.Email + "\",\"date\":\"" + this.Date + "\",\"favorite\":\""
       + this.selectedOptions + "\",\"interest\":\"" + this.interest + "\",\"recommendation\":\"" + this.recommendation + "\",\"raffle\":"
       + "\"" + this.raffle + "\"" + ",\"comments\":\"" + this.comments + "\"}";
     
-    console.log("body    " + body);
+    
     console.log(this.httpClient.post(this.REST_API_SERVER, body, { 'headers': headers }).subscribe());
     this.router.navigate(['success']);
     

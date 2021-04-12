@@ -1,3 +1,6 @@
+/* Team: Madeline, Vandana, Dhruv, Priya 
+Spec for survey form
+*/
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SurveyformComponent } from './surveyform.component';

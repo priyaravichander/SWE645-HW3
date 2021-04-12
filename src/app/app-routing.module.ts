@@ -1,3 +1,6 @@
+/* Team: Madeline, Vandana, Dhruv, Priya 
+Routing module
+*/
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 

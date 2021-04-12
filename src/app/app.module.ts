@@ -1,3 +1,6 @@
+/* Team: Madeline, Vandana, Dhruv, Priya 
+Routes are defined here
+*/
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule , Routes} from '@angular/router';
@@ -13,7 +16,6 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SuccessComponent } from './success/success.component';
-import { FailureComponent } from './failure/failure.component';
 
 
 @NgModule({
@@ -22,8 +24,7 @@ import { FailureComponent } from './failure/failure.component';
     SurveyformComponent,
     SurveyrecordsComponent,
     HomepageComponent,
-    SuccessComponent,
-    FailureComponent,
+    SuccessComponent
     
    
 
@@ -56,11 +57,6 @@ import { FailureComponent } from './failure/failure.component';
         path: 'success',
         
         component: SuccessComponent
-      },
-      {
-        path: 'failure',
-        
-        component: FailureComponent
       }
 
      

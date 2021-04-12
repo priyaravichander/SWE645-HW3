@@ -1,3 +1,6 @@
+/* Team: Madeline, Vandana, Dhruv, Priya 
+Component for Success page
+*/
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 

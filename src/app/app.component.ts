@@ -1,3 +1,6 @@
+/* Team: Madeline, Vandana, Dhruv, Priya 
+title is defined here
+*/
 import { Component } from '@angular/core';
 
 @Component({

@@ -1,4 +1,6 @@
-
+<!--  Team: Madeline, Vandana, Dhruv, Priya
+Survey form is displayed in this page
+-->
 
 
 <body class="w3-light-grey" >
@@ -31,7 +33,6 @@
 
 					<div class="w3-container">
 						<form #formData="ngForm" name="surveyForm" (ngSubmit)="onSubmit(formData.value)"> 
-						<!-- <form #formData="ngForm" name="Survey" onreset="resetForm();" (ngSubmit)="onSubmit(formData.value)"> -->
 
 							<div formGroupName="userDetail">
 							<br><b> Q1. Please enter your personal information below. (all fields are required)<span id="asterisk">*</span></b><br>
@@ -41,17 +42,7 @@
 									<tr>
 										<td>First Name:<span id="asterisk">*</span></td>
 										<td><input id="FirstName" #firstname="ngModel" class="form-control" type="text" [(ngModel)]="FirstName" [ngModelOptions]="{standalone: true}" required></td>
-										<!-- <div 
-    class="alert alert-danger">
-
-  <div *ngIf="firstname.errors && firstname.errors.required">
-    Name is required.
-  </div>
-  <small
-                        *ngIf="!myReactiveForm.get('userDetail.fname').valid && myReactiveForm.get('userDetail.fname').touched"
-                        class="text-danger">First name required.</small>
-
-</div> -->
+				
 										
 									</tr>
 									<tr>
